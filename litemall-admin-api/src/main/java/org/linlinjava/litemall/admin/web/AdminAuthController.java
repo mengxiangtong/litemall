@@ -51,6 +51,11 @@ public class AdminAuthController {
      */
     @PostMapping("/login")
     public Object login(@RequestBody String body, HttpServletRequest request) {
+
+        System.out.println("---");
+
+        logger.info("-----------3");
+
         String username = JacksonUtil.parseString(body, "username");
         String password = JacksonUtil.parseString(body, "password");
 
@@ -59,8 +64,10 @@ public class AdminAuthController {
         }
 
         Subject currentUser = SecurityUtils.getSubject();
-        try {
+      //  try {
             currentUser.login(new UsernamePasswordToken(username, password));
+
+            /*
         } catch (UnknownAccountException uae) {
             logHelper.logAuthFail("登录", "用户帐号或密码不正确");
             return ResponseUtil.fail(ADMIN_INVALID_ACCOUNT, "用户帐号或密码不正确");
@@ -72,6 +79,8 @@ public class AdminAuthController {
             logHelper.logAuthFail("登录", "认证失败");
             return ResponseUtil.fail(ADMIN_INVALID_ACCOUNT, "认证失败");
         }
+
+             */
 
         currentUser = SecurityUtils.getSubject();
         LitemallAdmin admin = (LitemallAdmin) currentUser.getPrincipal();

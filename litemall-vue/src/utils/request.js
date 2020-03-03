@@ -3,7 +3,7 @@ import { Dialog, Toast } from 'vant';
 
 // create an axios instance
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
+  baseURL:  "http://localhost:8082/" , // api 的 base_url
   timeout: 5000 // request timeout
 })
 
@@ -24,7 +24,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
-
+console.log('222======res==', res)
     if (res.errno === 501) {
         Toast.fail('请登录');
         setTimeout(() => {

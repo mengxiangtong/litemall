@@ -86,13 +86,18 @@ export default {
   },
   methods: {
     handleLogin() {
+      console.log('---------------------------------')
+
       this.$refs.loginForm.validate(valid => {
+        console.log('-------------' + valid)
         if (valid && !this.loading) {
           this.loading = true
+
           this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
             this.loading = false
             this.$router.push({ path: this.redirect || '/' })
           }).catch(response => {
+            console.log('-------------err')
             this.$notify.error({
               title: '失败',
               message: response.data.errmsg

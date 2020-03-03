@@ -30,6 +30,7 @@ const AuthLoginByWeixin='wx/auth/login_by_weixin'; //微信登录
 
 const AuthLoginByAccount='wx/auth/login'; //账号登录
 export function authLoginByAccount(data) {
+  console.log('tag', '--log--in-----')
   return request({
     url: AuthLoginByAccount,
     method: 'post',

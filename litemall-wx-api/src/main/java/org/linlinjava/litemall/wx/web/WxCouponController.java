@@ -60,7 +60,8 @@ public class WxCouponController {
                        @Order @RequestParam(defaultValue = "desc") String order) {
 
         List<LitemallCoupon> couponList = couponService.queryList(page, limit, sort, order);
-        return ResponseUtil.okList(couponList);
+       // return ResponseUtil.okList(couponList);
+        return  "ppppp";
     }
 
     /**

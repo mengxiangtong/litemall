@@ -50,14 +50,17 @@ const user = {
   actions: {
     // 用户名登录
     LoginByUsername({ commit }, userInfo) {
+      console.log('------', ' 用户名登录')
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password).then(response => {
+          console.log('tag------', response)
           const token = response.data.data.token
           commit('SET_TOKEN', token)
           setToken(token)
           resolve()
         }).catch(error => {
+          console.log('22err', error)
           reject(error)
         })
       })

@@ -65,6 +65,10 @@ public class WxAuthController {
      */
     @PostMapping("login")
     public Object login(@RequestBody String body, HttpServletRequest request) {
+
+        logger.info("------000000");
+        logger.info("处理腾讯0000------支付平台的订单支付");
+
         String username = JacksonUtil.parseString(body, "username");
         String password = JacksonUtil.parseString(body, "password");
         if (username == null || password == null) {
@@ -72,19 +76,21 @@ public class WxAuthController {
         }
 
         List<LitemallUser> userList = userService.queryByUsername(username);
+
         LitemallUser user = null;
         if (userList.size() > 1) {
             return ResponseUtil.serious();
         } else if (userList.size() == 0) {
-            return ResponseUtil.fail(AUTH_INVALID_ACCOUNT, "账号不存在");
+            return ResponseUtil.fail(AUTH_INVALID_ACCOUNT, "账号不存在1111");
         } else {
             user = userList.get(0);
         }
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        /*
         if (!encoder.matches(password, user.getPassword())) {
-            return ResponseUtil.fail(AUTH_INVALID_ACCOUNT, "账号密码不对");
-        }
+            return ResponseUtil.fail(AUTH_INVALID_ACCOUNT, "账号密码不对22222");
+        }*/
 
         // 更新登录情况
         user.setLastLoginTime(LocalDateTime.now());
@@ -92,6 +98,7 @@ public class WxAuthController {
         if (userService.updateById(user) == 0) {
             return ResponseUtil.updatedDataFailed();
         }
+
 
         // userInfo
         UserInfo userInfo = new UserInfo();
@@ -456,7 +463,7 @@ public class WxAuthController {
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         if (!encoder.matches(password, user.getPassword())) {
-            return ResponseUtil.fail(AUTH_INVALID_ACCOUNT, "账号密码不对");
+            return ResponseUtil.fail(AUTH_INVALID_ACCOUNT, "账号密码不对33333221");
         }
 
         user.setMobile(mobile);

@@ -67,8 +67,8 @@ export default {
   },
   data() {
     return {
-      account: '',
-      password: '',
+      account: '111',
+      password: '111',
       visiblePass: false,
       isLogining: false,
       userInfo: {}
@@ -85,6 +85,8 @@ export default {
     },
 
     login() {
+
+      console.log('tag', 'login--')
       let loginData = this.getLoginData();
       authLoginByAccount(loginData).then(res => {
         this.userInfo = res.data.data.userInfo;
@@ -96,6 +98,7 @@ export default {
 
         this.routerRedirect();
       }).catch(error => {
+        console.log('tag', 'errrrrr')
         Toast.fail(error.data.errmsg);
       });
     },
